@@ -1,16 +1,11 @@
-# example
+## Customizing Splash Screen
 
-A new Flutter project.
+## Android
+To customize the size of the splash screen image in your Android project, follow these steps:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Locate the `launch_background.xml` files:**
+```
+- android/app/src/main/res/drawable/launch_background.xml
+- android/app/src/main/res/drawable-v21/launch_background.xml
+```
+For more information and recommendations on splash screen sizes, refer to the [Android Developer documentation on splash screens](https://developer.android.com/develop/ui/views/launch/splash-screen#elements).
