@@ -1,0 +1,43 @@
+name: {{project_name.snakeCase()}}
+
+packages:
+  - .
+  - core/*
+  - core/*/*
+  - packages/*
+
+scripts:
+  init:
+    steps:
+      - melos run packages
+      - melos run dart
+      - melos run slang
+      - dart run build_runner build --delete-conflicting-outputs
+  format:
+    # Wait for https://github.com/dart-lang/dart_style/issues/864
+    run: >-
+      find lib -name '*.dart' -not -name '*.g.dart' -not -name '*.gr.dart' -not -name '*.freezed.dart' -not -name '*.chopper.dart'
+      | xargs dart format --fix --line-length 100
+    exec:
+      concurrency: 1
+  analyze:
+    run: dart analyze lib
+    exec:
+      concurrency: 1
+  packages:
+    run: flutter packages get
+    exec:
+      concurrency: 1
+  dart:
+    run: dart run build_runner build --delete-conflicting-outputs
+    orderDependents: true
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: build_runner
+  slang:
+    run: dart run slang
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: slang
